@@ -7,21 +7,21 @@
 <body>
     <div>
 
-        <h2 data-bind="text: name"></h2>
+        <h2 data-bind="text: currentCat().name"></h2>
 
-        <h3 data-bind="text: catLevel"></h3>
-        <div data-bind="text: clickCount"></div>
+        <h3 data-bind="text: currentCat().catLevel"></h3>
+        <div data-bind="text: currentCat().clickCount"></div>
 
         <img src="" alt="cute cate" data-bind="click: incrementCounter,
-        attr: {src: imgSrc}">
+        attr: {src: currentCat().imgSrc}">
 
 
-        <h4>Nicknames</h4>
-        <ul data-bind="foreach: people">
+        <h3>Nicknames</h3>
+        <ul data-bind="foreach: currentCat().nicknames">
             <li>
-                Name at position <span data-bind="text: $index"> </span>:
+                <!--<span data-bind="text: $index"> </span>:-->
                 <span data-bind="text: name"> </span>
-                <a href="#" data-bind="click: $parent.removePerson">Remove</a>
+                <!--<a href="#" data-bind="click: $parent.removePerson">Remove</a>-->
             </li>
         </ul>
         <!--<button data-bind="click: addPerson">Add</button>-->
