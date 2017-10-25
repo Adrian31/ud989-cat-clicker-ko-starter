@@ -13,6 +13,12 @@ var Cat = function() {
     ]);
 
 
+      self.incrementCounter = function() {
+        //Line below is the old code for the clickcount that may need to be moved back to the VM
+        //self.currentCat().clickCount(self.currentCat().clickCount() + 1);
+        self.clickCount(self.clickCount() + 1);
+      };
+
 
 
     self.catLevel = ko.computed(function(){
@@ -48,11 +54,6 @@ var viewModel = function() {
 
   self.currentCat = ko.observable(new Cat() );
 
-  self.incrementCounter = function() {
-    self.currentCat().clickCount(self.currentCat().clickCount() + 1);
-  };
-
 };
-
 
 ko.applyBindings(new viewModel());
