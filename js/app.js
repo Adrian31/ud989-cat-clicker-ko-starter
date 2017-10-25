@@ -1,20 +1,15 @@
-var Cat = function() {
+var Cat = function(data) {
   var self = this;
 
-  self.clickCount = ko.observable(0);
-  self.name = ko.observable('Tabby');
-  self.catLevel = ko.observable('NewBorn');
-  self.imgSrc = ko.observable('img/22252709_010df3379e_z.jpg');
-  self.imgAttribution = ko.observable('https://flickr.com/photos/big');
-  self.nicknames = ko.observableArray([
-        { name: 'Fabby' },
-        { name: 'Tabby' },
-        { name: 'Shabby' }
-    ]);
+  self.clickCount = ko.observable(data.clickCount);
+  self.name = ko.observable(data.name);
+  self.imgSrc = ko.observable(data.imgSrc);
+  self.imgAttribution = ko.observable(data.imgAttribution);
+  self.nicknames = ko.observableArray(data.nicknames);
 
     self.catLevel = ko.computed(function(){
       var clicks = self.clickCount();
-      var title = self.catLevel();
+      var title;
 
       if (clicks < 10) {
         //return ("NewBorn");
@@ -43,7 +38,13 @@ var Cat = function() {
 var viewModel = function() {
   var self = this;
 
-  this.currentCat = ko.observable(new Cat() );
+  this.currentCat = ko.observable(new Cat({
+    clickCount: 0,
+    name: 'Tabby',
+    imgSrc: 'img/22252709_010df3379e_z.jpg',
+    imgAttribution: 'https://flickr.com/photos/big',
+    nickNames: ['Tabby', 'Fabby', 'Shabby']
+  }) );
 
 
         this.incrementCounter = function() {
