@@ -12,15 +12,6 @@ var Cat = function() {
         { name: 'Shabby' }
     ]);
 
-
-      self.incrementCounter = function() {
-        //Line below is the old code for the clickcount that may need to be moved back to the VM
-        //self.currentCat().clickCount(self.currentCat().clickCount() + 1);
-        self.clickCount(self.clickCount() + 1);
-      };
-
-
-
     self.catLevel = ko.computed(function(){
       var clicks = self.clickCount();
       var title = self.catLevel();
@@ -52,7 +43,12 @@ var Cat = function() {
 var viewModel = function() {
   var self = this;
 
-  self.currentCat = ko.observable(new Cat() );
+  this.currentCat = ko.observable(new Cat() );
+
+
+        this.incrementCounter = function() {
+          self.currentCat().clickCount(self.currentCat().clickCount() + 1);
+        };
 
 };
 
