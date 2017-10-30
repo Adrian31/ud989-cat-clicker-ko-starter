@@ -1,3 +1,25 @@
+var initialCats = [
+    {
+      clickCount: 0,
+      name: 'Sammy',
+      imgSrc: "img/cat1.jpg",
+      //imgAttribution
+      nickNames: ['Tabby']
+    },
+    {
+      clickCount: 0,
+      name: 'Bruno',
+      imgSrc: "img/cat2.jpg",
+      nickNames: ['Shabby']
+    },
+    {
+      clickCount: 0,
+      name: 'Lilly',
+      imgSrc: "img/cat3.jpg",
+      nickNames: ['Shabby']
+    }
+];
+
 var Cat = function(data) {
   var self = this;
 
@@ -38,18 +60,17 @@ var Cat = function(data) {
 var viewModel = function() {
   var self = this;
 
-  this.currentCat = ko.observable(new Cat({
-    clickCount: 0,
-    name: 'Tabby',
-    imgSrc: 'img/22252709_010df3379e_z.jpg',
-    imgAttribution: 'https://flickr.com/photos/big',
-    nickNames: ['Tabby', 'Fabby', 'Shabby']
-  }) );
+  this.catList = ko.observableArray([]);
 
+  initialCats.forEach(function(catItem){
+    self.catList.push(new Cat(catItem));
+  });
 
-        this.incrementCounter = function() {
-          self.currentCat().clickCount(self.currentCat().clickCount() + 1);
-        };
+  this.currentCat = ko.observable( this.catList()[0] );
+
+  this.incrementCounter = function() {
+      self.currentCat().clickCount(self.currentCat().clickCount() + 1);
+  };
 
 };
 
